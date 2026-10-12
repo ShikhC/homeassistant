@@ -1,0 +1,121 @@
+title: Farm
+views:
+  - title: Home
+    path: home
+    icon: mdi:home
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: First floor
+          - type: custom:mushroom-entity-card
+            entity: switch.living_l1
+            name: Living light
+            icon: mdi:ceiling-light
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.living_l2
+            name: Living fan
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.bedroom_l1
+            name: Bedroom light
+            icon: mdi:ceiling-light
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.bedroom_l2
+            name: Bedroom fan
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.kitchen
+            name: Kitchen light
+            icon: mdi:ceiling-light
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.toilet_first
+            name: Toilet light
+            icon: mdi:ceiling-light
+            tap_action: {action: toggle}
+      - type: grid
+        cards:
+          - type: heading
+            heading: Ground floor
+          - type: custom:mushroom-entity-card
+            entity: switch.storage
+            name: Storage lights
+            icon: mdi:ceiling-light-multiple
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.bathroom_ground
+            name: Bathroom light
+            icon: mdi:ceiling-light
+            tap_action: {action: toggle}
+          - type: heading
+            heading: Storage fans
+          - type: custom:mushroom-entity-card
+            entity: switch.storage_fans_a_l1
+            name: Fan 1
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.storage_fans_a_l2
+            name: Fan 2
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.storage_fans_b_l1
+            name: Fan 3
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.storage_fans_b_l2
+            name: Fan 4
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.storage_fans_c_l1
+            name: Fan 5
+            icon: mdi:ceiling-fan
+            tap_action: {action: toggle}
+      - type: grid
+        cards:
+          - type: heading
+            heading: Stairs and roof
+          - type: custom:mushroom-entity-card
+            entity: switch.stairwell
+            name: Stairwell light
+            icon: mdi:stairs
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.roof
+            name: Roof light
+            icon: mdi:home-roof
+            tap_action: {action: toggle}
+      - type: grid
+        cards:
+          - type: heading
+            heading: Exterior
+          - type: custom:mushroom-entity-card
+            entity: switch.ext_north_l1
+            name: North porch
+            icon: mdi:outdoor-lamp
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.ext_east_l1
+            name: East porch
+            icon: mdi:outdoor-lamp
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.ext_south_l1
+            name: South porch
+            icon: mdi:outdoor-lamp
+            tap_action: {action: toggle}
+          - type: custom:mushroom-entity-card
+            entity: switch.ext_west_l1
+            name: West porch
+            icon: mdi:outdoor-lamp
+            tap_action: {action: toggle}

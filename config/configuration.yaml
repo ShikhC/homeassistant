@@ -1,0 +1,18 @@
+default_config:
+
+homeassistant:
+  name: Farm
+  packages: !include_dir_named packages
+
+lovelace:
+  mode: storage
+  dashboards:
+    security-dashboard:
+      mode: yaml
+      title: Farm
+      icon: mdi:shield-home
+      show_in_sidebar: true
+      filename: dashboards/security.yaml
+
+logger:
+  default: warning

@@ -1,0 +1,8 @@
+# Fan-out group for every phone running the Companion app.
+# Replace the actions with the real mobile_app_<device> names after each phone
+# installs the app (Settings → Devices & services → Mobile App shows them).
+notify:
+  - platform: group
+    name: security_phones
+    services:
+      - action: mobile_app_phone_1

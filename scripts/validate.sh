@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 VENV=.venv/bin
 
 echo "== yamllint"
-$VENV/yamllint config addons inventory
+$VENV/yamllint $(for d in config addons inventory; do [ -d "$d" ] && echo "$d"; done)
 
 echo "== dashboard files referenced by configuration.yaml exist"
 $VENV/python - <<'EOF'
