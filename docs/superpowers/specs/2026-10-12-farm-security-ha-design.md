@@ -105,8 +105,8 @@ Phones (Companion app) ──Tailscale──▶ Home Assistant OS (HP ProDesk, o
 - **Notifications:** Companion app push; a `notify.security_phones` group fans
   out to every phone. Alarm triggers use critical/high priority.
 - **Config style:** HA packages, one file per phase (§7). Dashboard in YAML
-  mode. Everything version-controlled in this repo and copied to `/config`
-  over Samba.
+  mode. Everything version-controlled in this repo and pulled onto the box from
+  GitHub via `scripts/apply.sh`.
 
 ## 4. Device placement and naming
 
@@ -249,7 +249,7 @@ homeassistant/
     wiring/siren.md
     shopping-list.md
     device-inventory.md          living owned / assigned / paired / spare table
-  config/                        mirrors HA /config, copied via Samba
+  config/                        mirrors HA /config, applied by scripts/apply.sh
     configuration.yaml           packages: !include_dir_named packages, lovelace yaml dashboard
     packages/
       alarm.yaml
@@ -302,8 +302,11 @@ one or two detect streams, not four, and on-camera detection removes the need.
 
 ## 10. Delivery and verification
 
-- Files are authored here. The user copies `config/` to HA's config share,
-  runs Developer Tools → Check Configuration, then restarts. Add-ons follow the
+- Files are authored here and pushed to the user's GitHub. On the box the
+  Terminal & SSH add-on runs `git pull` and `scripts/apply.sh`, which copies
+  `config/` into place and installs the Z2M file only before Z2M's first
+  start. The user then runs Check Configuration and restarts. Samba is not
+  used (blocked by the user's device compliance policy). Add-ons follow the
   step files in `addons/`. No tool in this repo ever contacts the HA instance.
 - Before handover each phase's `config/` is validated locally with
   `hass --script check_config` in a Python venv on the Mac.

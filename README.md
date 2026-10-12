@@ -5,7 +5,8 @@ Security-first Home Assistant setup for a two-floor farmhouse. Design:
 
 ## Layout
 
-- `config/` mirrors Home Assistant's `/config`. Copy it over the Samba share.
+- `config/` mirrors Home Assistant's `/config`. The box pulls this repo from
+  GitHub and `scripts/apply.sh` copies it into place (addons/github-pull.md).
 - `addons/` holds add-on configuration files and step-by-step runbooks.
 - `inventory/devices.yaml` is the source of truth for every Zigbee device:
   name, model, location, owned or to buy. `docs/device-inventory.md` is
@@ -15,8 +16,8 @@ Security-first Home Assistant setup for a two-floor farmhouse. Design:
 
 ## Working rule
 
-Nothing here talks to the Home Assistant box. Files go in by Samba; state
-comes back as exports placed in `exports/` (git-ignored).
+Nothing here talks to the Home Assistant box. Files go in by `git pull` on
+the box; state comes back as exports the user shares (git-ignored by default).
 
 ## Phases
 

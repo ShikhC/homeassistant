@@ -6,16 +6,14 @@ mode (addons/dongle-max.md).
 ## Install
 
 1. Settings → Apps → App Store → Zigbee2MQTT → Install. Do not start yet.
-2. Copy `addons/zigbee2mqtt/configuration.yaml` from this repo to
-   `/config/zigbee2mqtt/configuration.yaml` over the Samba share (create the
-   folder if needed). Fix the IP if yours is not `192.168.1.50`.
-   **Copy it exactly once, before the first start.** Z2M fills in the real
-   network key on first start; copying the file again later creates a new
-   network and orphans every paired device. Change settings afterwards in
-   the Z2M web UI only.
-3. Create `/config/zigbee2mqtt/secret.yaml`:
-   ```yaml
-   mqtt_password: <the z2m user password from addons/mosquitto.md>
+2. `scripts/apply.sh` (addons/github-pull.md) has already placed the file
+   at `/config/zigbee2mqtt/configuration.yaml`, with the dongle IP from the
+   repo. The script installs it only while Z2M has never started; after
+   first start it refuses to touch it, so a re-run can never create a new
+   network. Change Z2M settings afterwards in the Z2M web UI only.
+3. In the Terminal & SSH app create the MQTT secret (replace the password):
+   ```sh
+   echo "mqtt_password: <the z2m user password from addons/mosquitto.md>" > /config/zigbee2mqtt/secret.yaml
    ```
 4. In the add-on's Configuration tab, set serial port to
    `tcp://192.168.1.50:6638` and adapter `ember` as well (the add-on merges
@@ -25,11 +23,12 @@ mode (addons/dongle-max.md).
    `Error while opening serialport`, re-check addons/dongle-max.md.
 6. Open the Web UI (sidebar entry). Settings → Advanced: confirm channel 20,
    permit join off.
-7. **Verify the network was created and lock the file.** In Finder open the
-   `config` share → `zigbee2mqtt` → `configuration.yaml` (open it with
-   TextEdit, do not save). The lines `network_key`, `pan_id` and
-   `ext_pan_id` must now show numbers, not the word `GENERATE`. If any still
-   says GENERATE, Z2M has not started successfully; go back to step 5.
+7. **Verify the network was created.** In the Terminal & SSH app:
+   ```sh
+   grep -c GENERATE /config/zigbee2mqtt/configuration.yaml
+   ```
+   must print `0`. If it prints anything else, Z2M has not started
+   successfully; go back to step 5.
    Then in Home Assistant: Settings → System → Backups → Create backup
    named `z2m-network-created`. From this moment on, never copy the repo's
    `addons/zigbee2mqtt/configuration.yaml` to the box again. Tick the
@@ -82,6 +81,5 @@ before battery sensors (switches become routers that extend range).
 
 ## Export for the repo
 
-Web UI → Settings → Tools → "Download state" and copy
-`/config/zigbee2mqtt/database.db` and `devices.yaml` into `exports/z2m/` on
-the Mac when asked. These are git-ignored.
+See addons/github-pull.md "Sending files back for review" for
+`/config/zigbee2mqtt/devices.yaml`.

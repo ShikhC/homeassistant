@@ -9,15 +9,13 @@ Tick in order. Each step names its runbook.
 
 ## On the farm
 - [ ] UPS installed; server, router, modem on it (addons/nut.md hardware).
-- [ ] Copy `config/` from the repo to the Samba `config` share (after the
-      Samba step below)
-      (overwrite `configuration.yaml`; keep existing `.storage`). Create
-      `secrets.yaml` from `secrets.yaml.example`.
+- [ ] Repo pushed to GitHub; Terminal & SSH app installed; repo cloned to
+      `/config/farm` and `sh scripts/apply.sh` run; `secrets.yaml` created
+      (addons/github-pull.md).
 - [ ] Developer Tools → YAML → Check configuration → "Configuration valid".
 - [ ] Settings → System → Restart.
 - [ ] Mosquitto (addons/mosquitto.md).
 - [ ] Dongle Max coordinator mode and IP (addons/dongle-max.md).
-- [ ] Samba share app installed; `config` share opens in Finder (addons/samba.md).
 - [ ] Zigbee2MQTT installed and started (addons/zigbee2mqtt.md "Install").
 - [ ] Z2M first start verified: no `GENERATE` left in the file on the box,
       backup `z2m-network-created` taken. The repo's Z2M file is never
@@ -25,8 +23,9 @@ Tick in order. Each step names its runbook.
 - [ ] HACS + Mushroom (addons/hacs.md). Sidebar "Farm" opens.
 - [ ] Tailscale (addons/tailscale.md). Phone loads HA on mobile data.
 - [ ] NUT (addons/nut.md). `sensor.ups_status` = Online.
-- [ ] Edit `config/packages/notifications.yaml`: replace `mobile_app_phone_1`
-      with each real `mobile_app_<device>` action; recopy; restart.
+- [ ] Edit `config/packages/notifications.yaml` in the repo: replace
+      `mobile_app_phone_1` with each real `mobile_app_<device>` action; push;
+      on the box `git pull && sh scripts/apply.sh`; restart.
 
 ## Pair devices (addons/zigbee2mqtt.md "Pair and name")
 Order: `living`, `bedroom`, `kitchen`, `toilet_first`, `ext_north`,
@@ -51,6 +50,6 @@ Order: `living`, `bedroom`, `kitchen`, `toilet_first`, `ext_north`,
 - [ ] Settings → System → Backups → create a full backup named "phase1".
 
 ## Export back to the repo
-- [ ] Copy `/config/zigbee2mqtt/devices.yaml` to `exports/z2m/devices.yaml`.
-- [ ] Download diagnostics for the MQTT integration into `exports/`.
+- [ ] Share `/config/zigbee2mqtt/devices.yaml` (addons/github-pull.md
+      "Sending files back").
 - [ ] Commit `inventory/devices.yaml` and regenerated `docs/device-inventory.md`.
