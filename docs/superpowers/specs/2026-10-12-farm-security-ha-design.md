@@ -54,7 +54,7 @@ Not in scope: comfort automations, voice assistants, Frigate NVR (deferred, see
 | Auto/Manual selector switch, panel-mount | Pump starter integration | Electrician supplies |
 | 4 weather hoods | SNZB-03PR2 are indoor units; mount under eaves in hoods | Phase 1 |
 | 4 PoE cameras with on-camera person detection + PoE switch/NVR | Phase 4 | Brand decided at purchase; must expose a person-detected event to HA (Hikvision AcuSense via hikvision_next, or TP-Link VIGI) |
-| 2 × MINI-ZB2GS | Three extra fan outputs on the first floor (§2.3) | Leaves one spare output |
+| 3 × MINI-ZB2GS | Five individually switched storage fans (§2.3) | Leaves one spare output |
 
 ### 2.3 Device budget
 
@@ -63,9 +63,14 @@ is the living copy and is updated whenever a device is assigned, paired, or
 bought. Fans switch through the relay in series with the existing wall
 regulator, so HA gives on/off and the regulator keeps speed control.
 
+Fans: five in the ground-floor storage, two on the first floor (living,
+bedroom). Storage fans are switched individually (default). If group control
+of the storage fans is acceptable, all five can share one 16 A output
+(≈ 400 W total) and only 1 × ZB2GS needs buying instead of 3.
+
 | Resource | Owned | Needed | Spare / (short) |
 |---|---|---|---|
-| Relay outputs (6×ZB2GS=12, 3×ZB1GS=3, 4×ZBMINIR2=4, 1×DIN=1) | 20 | 23 (8 exterior, 5 interior lights, 5 fans, storage, stairwell, roof, siren, pump) | (3) → buy 2×ZB2GS, then +1 spare |
+| Relay outputs (6×ZB2GS=12, 3×ZB1GS=3, 4×ZBMINIR2=4, 1×DIN=1) | 20 | 25 (8 exterior, 5 interior lights, 7 fans, storage lights, stairwell, roof, siren, pump) | (5) → buy 3×ZB2GS, then +1 spare |
 | Presence sensors SNZB-03PR2 | 4 | 4 (one per side) | 0 |
 | Door sensors SNZB-04PR1 | 4 | 4 | 0 |
 | Energy-metered output BASIC-ZB1GSP | 1 | 1 (pump) | 0 |
@@ -114,11 +119,12 @@ before pairing. Two-gang switches expose `switch.<name>_l1` and `_l2`.
 | `ext_east` | ZB2GS | Exterior east | porch light | floodlight |
 | `ext_south` | ZB2GS | Exterior south / balcony | porch light | floodlight |
 | `ext_west` | ZB2GS | Exterior west | porch light | floodlight |
-| `living` | ZB2GS | Living room | light | fan 1 |
-| `living_fans` | ZB2GS (to buy) | Living room | fan 2 | balcony fan |
+| `living` | ZB2GS | Living room | light | fan |
 | `bedroom` | ZB2GS | Bedroom | light | fan |
-| `kitchen` | ZB2GS (to buy) | Kitchen | light | fan |
-| `spare_1` | ZB1GS (freed from kitchen) | Unassigned | spare | |
+| `kitchen` | ZB1GS | Kitchen | light | |
+| `storage_fans_a` | ZB2GS (to buy) | Storage | fan 1 | fan 2 |
+| `storage_fans_b` | ZB2GS (to buy) | Storage | fan 3 | fan 4 |
+| `storage_fans_c` | ZB2GS (to buy) | Storage | fan 5 | spare |
 | `toilet_first` | ZB1GS | First-floor toilet | light | |
 | `bathroom_ground` | ZB1GS | Ground bathroom | light | |
 | `storage` | ZBMINIR2 | Storage | lights | |
@@ -133,8 +139,9 @@ before pairing. Two-gang switches expose `switch.<name>_l1` and `_l2`.
 | `door_stairs` | SNZB-04PR1 | Stairwell ground door | contact, tamper | |
 | `door_roof` | SNZB-04PR1 | Roof door | contact, tamper | |
 
-Fan assumption: five first-floor fans are living ×2, kitchen, bedroom and
-balcony. If the split differs, only the l1/l2 labels above move.
+Fans: five in the ground-floor storage (individually switched), two on the
+first floor (living, bedroom). A `fan.storage_all` group lets the dashboard
+and automations treat the five storage fans as one.
 
 HA areas: Exterior North/East/South/West, Living Room, Bedroom, Kitchen,
 Toilet, Ground Bathroom, Storage, Stairwell, Roof, Pump Room, Utility.
@@ -264,9 +271,9 @@ five views as bottom tabs:
    offline count; four door cards (contact, tamper badge, battery); four
    perimeter cards (presence, porch, flood); siren card with hold-to-activate
    and a Silence button; filtered logbook, 24 h.
-2. **Home**: lights by Ground, First, Stairs & Roof; a First-floor fans
-   section with the five fans as one tap-to-toggle row and an "all fans off"
-   button.
+2. **Home**: lights by Ground, First, Stairs & Roof; a Storage fans section
+   with the five fans as tap-to-toggle tiles plus "all storage fans on/off";
+   living and bedroom fans sit with their room lights.
 3. **Pump**: start/stop, run-timer slider, running/fault state, per-phase V
    and A, live W, today/month kWh, run history, grid status, fault reset.
 4. **System**: UPS charge/load/runtime; Zigbee devices sorted offline first
