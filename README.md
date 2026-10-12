@@ -25,6 +25,8 @@ comes back as exports placed in `exports/` (git-ignored).
 3. Pump: remote control, phase-loss protection, energy.
 4. Cameras.
 
+Phase 1 runbook: `docs/phase1-checklist.md`.
+
 ## Developing
 
 ```bash
