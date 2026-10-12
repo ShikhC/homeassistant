@@ -5,7 +5,8 @@
 # a NEW network and orphan every paired device. After first start, edit
 # settings in the Z2M web UI or on the box, and never copy the box's file back
 # into git.
-# Replace 192.168.1.50 with the Dongle Max's reserved IP (addons/dongle-max.md).
+# Dongle Max address: 192.168.31.186 (addons/dongle-max.md). After first start,
+# change it only in the Z2M web UI, never by recopying this file.
 homeassistant:
   enabled: true
 
