@@ -9,14 +9,19 @@ Tick in order. Each step names its runbook.
 
 ## On the farm
 - [ ] UPS installed; server, router, modem on it (addons/nut.md hardware).
-- [ ] Copy `config/` from the repo to the Samba `config` share
+- [ ] Copy `config/` from the repo to the Samba `config` share (after the
+      Samba step below)
       (overwrite `configuration.yaml`; keep existing `.storage`). Create
       `secrets.yaml` from `secrets.yaml.example`.
 - [ ] Developer Tools → YAML → Check configuration → "Configuration valid".
 - [ ] Settings → System → Restart.
 - [ ] Mosquitto (addons/mosquitto.md).
 - [ ] Dongle Max coordinator mode and IP (addons/dongle-max.md).
+- [ ] Samba share app installed; `config` share opens in Finder (addons/samba.md).
 - [ ] Zigbee2MQTT installed and started (addons/zigbee2mqtt.md "Install").
+- [ ] Z2M first start verified: no `GENERATE` left in the file on the box,
+      backup `z2m-network-created` taken. The repo's Z2M file is never
+      copied again after this tick.
 - [ ] HACS + Mushroom (addons/hacs.md). Sidebar "Farm" opens.
 - [ ] Tailscale (addons/tailscale.md). Phone loads HA on mobile data.
 - [ ] NUT (addons/nut.md). `sensor.ups_status` = Online.

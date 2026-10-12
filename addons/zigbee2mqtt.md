@@ -25,6 +25,28 @@ mode (addons/dongle-max.md).
    `Error while opening serialport`, re-check addons/dongle-max.md.
 6. Open the Web UI (sidebar entry). Settings → Advanced: confirm channel 20,
    permit join off.
+7. **Verify the network was created and lock the file.** In Finder open the
+   `config` share → `zigbee2mqtt` → `configuration.yaml` (open it with
+   TextEdit, do not save). The lines `network_key`, `pan_id` and
+   `ext_pan_id` must now show numbers, not the word `GENERATE`. If any still
+   says GENERATE, Z2M has not started successfully; go back to step 5.
+   Then in Home Assistant: Settings → System → Backups → Create backup
+   named `z2m-network-created`. From this moment on, never copy the repo's
+   `addons/zigbee2mqtt/configuration.yaml` to the box again. Tick the
+   matching line in docs/phase1-checklist.md.
+
+## Moving the system to the farmhouse (or any new network)
+
+The only thing that changes is the dongle's address. Do NOT recopy the
+configuration file.
+
+1. On the farm router, give the Dongle Max a DHCP reservation and note the
+   new IP.
+2. Z2M Web UI → Settings → Settings → Serial → Port: change the address
+   part of `tcp://<ip>:6638` to the new IP → Submit.
+3. Z2M Web UI → Settings → Tools → Restart Zigbee2MQTT. The log should show
+   `Zigbee2MQTT started!` again and every device keeps its name and
+   history.
 
 ## Pair and name
 
