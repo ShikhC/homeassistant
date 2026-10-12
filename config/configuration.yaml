@@ -4,6 +4,11 @@ homeassistant:
   name: Farm
   packages: !include_dir_named packages
 
+# Keep HA's stock includes so UI-created automations/scripts/scenes still load.
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
 lovelace:
   mode: storage
   dashboards:

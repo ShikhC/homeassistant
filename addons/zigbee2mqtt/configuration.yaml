@@ -1,4 +1,10 @@
-# Install at /config/zigbee2mqtt/configuration.yaml on the HA box.
+# COPY ONCE, BEFORE THE FIRST START OF ZIGBEE2MQTT, to
+# /config/zigbee2mqtt/configuration.yaml on the HA box.
+# On first start Z2M replaces every GENERATE below with the real network key
+# and PAN ids and rewrites the file. Copying this file again later would create
+# a NEW network and orphan every paired device. After first start, edit
+# settings in the Z2M web UI or on the box, and never copy the box's file back
+# into git.
 # Replace 192.168.1.50 with the Dongle Max's reserved IP (addons/dongle-max.md).
 homeassistant:
   enabled: true

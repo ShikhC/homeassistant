@@ -65,9 +65,13 @@ def violations(inv: dict) -> list[str]:
     if dupes:
         errs.append(f"duplicate names: {sorted(dupes)}")
     for d in inv["devices"]:
+        if d["model"] not in inv["stock"]:
+            errs.append(f"{d['name']}: model {d['model']} not in stock")
         gangs = inv["gangs"].get(d["model"])
         if gangs and set(d.get("outputs") or {}) != {f"l{i}" for i in range(1, gangs + 1)}:
             errs.append(f"{d['name']}: outputs do not match {gangs}-gang model")
+    for model in set(inv["gangs"]) - set(inv["stock"]):
+        errs.append(f"gangs: model {model} not in stock")
     for model, b in budget(inv).items():
         if b["assigned_owned"] > b["owned"]:
             errs.append(f"{model}: {b['assigned_owned']} assigned but only {b['owned']} owned")

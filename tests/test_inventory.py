@@ -51,3 +51,21 @@ def test_render_markdown_lists_every_device():
     md = inventory.render_markdown(INV)
     for d in INV["devices"]:
         assert f"`{d['name']}`" in md
+
+
+def test_models_in_stock():
+    unknown = [d["name"] for d in INV["devices"] if d["model"] not in INV["stock"]]
+    assert unknown == [], f"devices with a model missing from stock: {unknown}"
+
+
+def test_gangs_models_in_stock():
+    assert set(INV["gangs"]) <= set(INV["stock"])
+
+
+def test_check_rejects_unknown_model(tmp_path):
+    inv = dict(INV)
+    inv["devices"] = INV["devices"] + [
+        {"name": "door_extra", "model": "SNZB-04PR", "status": "owned", "location": "x"}
+    ]
+    errs = inventory.violations(inv)
+    assert any("door_extra" in e and "SNZB-04PR" in e for e in errs), errs

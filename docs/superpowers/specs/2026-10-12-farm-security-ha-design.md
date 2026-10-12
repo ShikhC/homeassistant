@@ -205,13 +205,19 @@ to that name.
 ### 6.1 Wiring (electrician)
 
 - BASIC-ZB1GSP output contact is placed in the DOL starter's **coil circuit**,
-  selected by a panel-mount **Auto/Manual** switch.
+  selected by a 3-position **MANUAL–OFF–AUTO** selector, with a latching
+  E-STOP and the overload relay in series with both paths.
   - Manual: original START/STOP/hold-in circuit, Zigbee contact out of
     circuit.
-  - Auto: Zigbee contact (maintained) in series with the STOP button and the
-    overload relay's NC contact.
-- The overload relay and STOP remain in series in both modes. Zigbee can only
-  request a run; it can never defeat thermal protection.
+  - Off: local stop for Auto mode (a momentary STOP cannot hold a maintained
+    contact off).
+  - Auto: Zigbee contact (maintained) feeds the coil.
+- Control circuit must be 230 V L-N; a 415 V coil needs an interposing
+  relay.
+- Because Auto bypasses the starter's no-volt release, the pump relay uses
+  `power_on_behavior: off` so a grid return never restarts the motor.
+- The overload relay and E-STOP remain in series in both modes. Zigbee can
+  only request a run; it can never defeat thermal protection.
 - Motor feed passes through the 3-phase meter's CT clamps; meter voltage taps
   on all three phases.
 - `docs/wiring/pump-starter.md` carries the diagram and checklist.
