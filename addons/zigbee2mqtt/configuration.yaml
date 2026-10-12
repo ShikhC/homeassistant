@@ -1,0 +1,39 @@
+# Install at /config/zigbee2mqtt/configuration.yaml on the HA box.
+# Replace 192.168.1.50 with the Dongle Max's reserved IP (addons/dongle-max.md).
+homeassistant:
+  enabled: true
+
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://core-mosquitto:1883
+  user: z2m
+  password: '!secret mqtt_password'
+
+serial:
+  port: tcp://192.168.1.50:6638
+  adapter: ember
+  baudrate: 115200
+
+advanced:
+  channel: 20
+  network_key: GENERATE
+  pan_id: GENERATE
+  ext_pan_id: GENERATE
+  last_seen: ISO_8601_local
+  log_level: info
+
+availability:
+  enabled: true
+  active:
+    timeout: 10
+  passive:
+    timeout: 1500
+
+frontend:
+  enabled: true
+  port: 8099
+
+permit_join: false
+
+device_options:
+  retain: true
