@@ -16,7 +16,7 @@ mode (addons/dongle-max.md).
    echo "mqtt_password: <the z2m user password from addons/mosquitto.md>" > /config/zigbee2mqtt/secret.yaml
    ```
 4. In the add-on's Configuration tab, set serial port to
-   `tcp://192.168.1.50:6638` and adapter `ember` as well (the add-on merges
+   `tcp://192.168.31.186:6638` and adapter `ember` as well (the add-on merges
    its options into the file).
 5. Start the add-on. Open its Log. Expect
    `Zigbee2MQTT started!` and `Coordinator firmware version`. If you see

@@ -7,7 +7,7 @@ Ethernet, powered by USB from the UPS.
    antennas attached. Connect Ethernet to the router and USB to a 5 V USB
    adapter plugged into the UPS.
 2. On the router, create a DHCP reservation for the dongle's MAC and note
-   the IP. This plan assumes `192.168.1.50`; edit
+   the IP. This plan assumes `192.168.31.186`; edit
    `addons/zigbee2mqtt/configuration.yaml` if different.
 3. Open the dongle's web console at `http://<ip>` (or `http://Dongle-M.local`).
 4. Set EFR32MG24 operation mode to **Coordinator Mode**.
