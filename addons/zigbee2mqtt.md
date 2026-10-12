@@ -5,7 +5,11 @@ mode (addons/dongle-max.md).
 
 ## Install
 
-1. Settings → Apps → App Store → Zigbee2MQTT → Install. Do not start yet.
+1. Zigbee2MQTT is not in the built-in store. Settings → Apps → App Store →
+   three-dot menu (top right) → Repositories → add
+   `https://github.com/zigbee2mqtt/hassio-zigbee2mqtt` → Close → refresh.
+   A "Zigbee2MQTT" section appears; open **Zigbee2MQTT** (not Edge) →
+   Install. Do not start yet.
 2. `scripts/apply.sh` (addons/github-pull.md) has already placed the file
    at `/config/zigbee2mqtt/configuration.yaml`, with the dongle IP from the
    repo. The script installs it only while Z2M has never started; after
