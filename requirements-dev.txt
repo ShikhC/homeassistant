@@ -1,0 +1,4 @@
+homeassistant>=2026.1
+yamllint>=1.35
+pytest>=8
+pyyaml>=6

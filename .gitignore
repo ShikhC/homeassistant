@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.superpowers/
+config/.storage/
+config/*.log
+config/*.db*
+config/deps/
+config/tts/
+config/secrets.yaml
+exports/
+.DS_Store
