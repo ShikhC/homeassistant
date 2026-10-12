@@ -51,6 +51,22 @@ configuration file.
    `Zigbee2MQTT started!` again and every device keeps its name and
    history.
 
+## Troubleshooting first start
+
+- `zh:ember:uart:ash: Port Error: read ECONNRESET` repeating: something
+  else holds the dongle's TCP port. The dongle serves one client. Check, in
+  order: Settings → Devices & services for a configured **Zigbee Home
+  Automation** (ZHA) entry or a Discovered card for the dongle (delete /
+  ignore it); any other machine running Zigbee2MQTT or ZHA against the
+  dongle; then reboot the dongle and restart the add-on. On Home Assistant
+  OS nothing can run "underneath" HA, so a stray service there is not a
+  possible cause (`docker ps` from Advanced SSH with protection mode off
+  lists only `app_*`, `hassio_*` and `homeassistant`).
+- A single ECONNRESET during startup followed by `Zigbee2MQTT started!` is
+  the ember adapter resetting the radio and is normal.
+- Add-on CLI from any terminal app: `ha apps restart 45df7312_zigbee2mqtt`,
+  `ha apps logs 45df7312_zigbee2mqtt | tail -40`.
+
 ## Pair and name
 
 Pair devices one at a time, nearest the coordinator first, mains switches
