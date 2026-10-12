@@ -1,0 +1,55 @@
+# Source of truth for Zigbee devices. Edit this, then run
+#   .venv/bin/python scripts/inventory.py --write
+# status: owned | to_buy | paired   (paired implies owned)
+stock:
+  MINI-ZB2GS: 6
+  MINI-ZB1GS: 3
+  ZBMINIR2: 4
+  BASIC-ZB1GSP: 1
+  SNZB-03PR2: 4
+  SNZB-04PR1: 4
+  PoE-Dongle-Max: 1
+  3PH-METER: 0
+
+gangs:
+  MINI-ZB2GS: 2
+  MINI-ZB1GS: 1
+  ZBMINIR2: 1
+  BASIC-ZB1GSP: 1
+
+devices:
+  - {name: coordinator, model: PoE-Dongle-Max, status: owned, location: First floor ceiling, role: coordinator}
+
+  - {name: ext_north, model: MINI-ZB2GS, status: owned, location: Exterior North, outputs: {l1: porch light, l2: floodlight}}
+  - {name: ext_east, model: MINI-ZB2GS, status: owned, location: Exterior East, outputs: {l1: porch light, l2: floodlight}}
+  - {name: ext_south, model: MINI-ZB2GS, status: owned, location: Exterior South, outputs: {l1: porch light, l2: floodlight}}
+  - {name: ext_west, model: MINI-ZB2GS, status: owned, location: Exterior West, outputs: {l1: porch light, l2: floodlight}}
+  - {name: living, model: MINI-ZB2GS, status: owned, location: Living room, outputs: {l1: light, l2: fan}}
+  - {name: bedroom, model: MINI-ZB2GS, status: owned, location: Bedroom, outputs: {l1: light, l2: fan}}
+  - {name: kitchen, model: MINI-ZB1GS, status: owned, location: Kitchen, outputs: {l1: light}}
+  - {name: toilet_first, model: MINI-ZB1GS, status: owned, location: First-floor toilet, outputs: {l1: light}}
+  - {name: bathroom_ground, model: MINI-ZB1GS, status: owned, location: Ground bathroom, outputs: {l1: light}}
+  - {name: storage, model: ZBMINIR2, status: owned, location: Storage, outputs: {l1: lights}}
+  - {name: stairwell, model: ZBMINIR2, status: owned, location: External stairwell, outputs: {l1: light}}
+  - {name: roof, model: ZBMINIR2, status: owned, location: Roof, outputs: {l1: light}}
+  - {name: siren, model: ZBMINIR2, status: owned, location: Utility, outputs: {l1: 12 V PSU to siren}}
+  - {name: pump, model: BASIC-ZB1GSP, status: owned, location: Pump panel, outputs: {l1: starter coil circuit}}
+  - {name: storage_fans_a, model: MINI-ZB2GS, status: to_buy, location: Storage, outputs: {l1: fan 1, l2: fan 2}}
+  - {name: storage_fans_b, model: MINI-ZB2GS, status: to_buy, location: Storage, outputs: {l1: fan 3, l2: fan 4}}
+  - {name: storage_fans_c, model: MINI-ZB2GS, status: to_buy, location: Storage, outputs: {l1: fan 5, l2: spare}}
+
+  - {name: presence_north, model: SNZB-03PR2, status: owned, location: Exterior North}
+  - {name: presence_east, model: SNZB-03PR2, status: owned, location: Exterior East}
+  - {name: presence_south, model: SNZB-03PR2, status: owned, location: Exterior South}
+  - {name: presence_west, model: SNZB-03PR2, status: owned, location: Exterior West}
+  - {name: door_storage, model: SNZB-04PR1, status: owned, location: Storage door}
+  - {name: door_main, model: SNZB-04PR1, status: owned, location: Main first-floor door}
+  - {name: door_stairs, model: SNZB-04PR1, status: owned, location: Stairwell ground door}
+  - {name: door_roof, model: SNZB-04PR1, status: owned, location: Roof door}
+
+  - {name: pump_meter, model: 3PH-METER, status: to_buy, location: Pump panel}
+
+wishlist:
+  - {model: SNZB-04PR1, location: Pump room door}
+  - {model: SNZB-04PR1, location: Balcony door}
+  - {model: SNZB-03PR2, location: Storage interior}

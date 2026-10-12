@@ -28,6 +28,9 @@ EOF
 echo "== hass check_config"
 $VENV/hass --script check_config -c config
 
+echo "== inventory"
+$VENV/python scripts/inventory.py --check
+
 echo "== pytest"
 # exit 5 = no tests collected; acceptable before the first test file exists
 $VENV/pytest -q || [ $? -eq 5 ]
