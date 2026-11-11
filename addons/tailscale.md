@@ -7,9 +7,9 @@
 3. Open the add-on Web UI → follow the login link → approve the machine.
 4. In the Tailscale admin console → Machines → the HA node → Disable key
    expiry (otherwise access silently stops after 180 days).
-5. Note the MagicDNS name, e.g. `homeassistant.tailXXXX.ts.net`.
+5. Note the MagicDNS name, this install: `homeassistant.tail0b5409.ts.net`.
 6. Settings → System → Network → Home Assistant URL:
-   - Internet (external): `http://homeassistant.tailXXXX.ts.net:8123`
+   - Internet (external): `http://homeassistant.tail0b5409.ts.net:8123`
    - Local network: `http://homeassistant.local:8123`
 7. On each phone: Companion app → Settings → Companion app → Servers →
    edit → External URL = the Tailscale URL. Enter the farm Wi-Fi SSID under
