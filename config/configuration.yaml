@@ -3,6 +3,9 @@ default_config:
 homeassistant:
   name: Farm
   packages: !include_dir_named packages
+  # URLs are locked in the UI while this block exists, so they live here.
+  internal_url: http://homeassistant.local:8123
+  external_url: http://homeassistant.tail0b5409.ts.net:8123
 
 # Keep HA's stock includes so UI-created automations/scripts/scenes still load.
 automation: !include automations.yaml
